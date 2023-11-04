@@ -31,8 +31,8 @@ OctetString eap::EapAttributes::getMac() const
         return {};
 
     int len = val->get2I(0);
-    if (len != val->length() - 2)
-        return {};
+    // if (len != val->length() - 2)
+    //     return {};
 
     return val->subCopy(2);
 }
@@ -84,7 +84,7 @@ OctetString eap::EapAttributes::getKdfInput() const
 
 void eap::EapAttributes::putRes(const OctetString &value)
 {
-    attributes[(int)EAttributeType::AT_RES] = OctetString::Concat(OctetString::FromOctet2(value.length()), value);
+    attributes[(int)EAttributeType::AT_RES] = OctetString::Concat(OctetString::FromOctet2(value.length()*8), value);
 }
 
 void eap::EapAttributes::putMac(const OctetString &value)

@@ -91,7 +91,8 @@ std::pair<OctetString, OctetString> CalculateCkPrimeIkPrime(const OctetString &c
 OctetString CalculateMk(const OctetString &ckPrime, const OctetString &ikPrime, const Supi &supiIdentity)
 {
     OctetString key = OctetString::Concat(ikPrime, ckPrime);
-    OctetString input = OctetString::FromAscii("EAP-AKA'" + supiIdentity.type + "-" + supiIdentity.value);
+    // OctetString input = OctetString::FromAscii("EAP-AKA'" + supiIdentity.type + "-" + supiIdentity.value);
+    OctetString input = OctetString::FromAscii("EAP-AKA'" /*+ supiIdentity.type + "-" */+ supiIdentity.value);
 
     // Calculating the 208-octet output
     return crypto::CalculatePrfPrime(key, input, 208);
